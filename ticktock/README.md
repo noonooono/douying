@@ -22,8 +22,8 @@
 
 ### **拓展功能演示**
     <img src="images/5.png" alt="Logo" width="200" height="400">
-    <img src="images/6.png" alt="Logo" width="200" height="400">
-    <img src="images/7.png" alt="Logo" width="200" height="400">设置服务端3地址**
+    <img src="images/8.png" alt="Logo" width="200" height="400">
+ </a>
 
 
 ​    <img src="images/9.png" alt="Logo" width="200" height="400">
