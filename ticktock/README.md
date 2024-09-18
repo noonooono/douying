@@ -13,7 +13,6 @@
 ## 演示界面
 ### **基础功能演示**
 
-
 ​    <img src="images/1.png" alt="Logo" width="200" height="400">
 ​    <img src="images/2.png" alt="Logo" width="200" height="400">
 ​    <img src="images/3.png" alt="Logo" width="200" height="400">
@@ -21,11 +20,8 @@
 </a>
 
 ### **拓展功能演示**
-    <img src="images/5.png" alt="Logo" width="200" height="400">
-    <img src="images/8.png" alt="Logo" width="200" height="400">
- </a>
 
-
+<img src="images/5.png" alt="Logo" width="200" height="400">
 ​    <img src="images/9.png" alt="Logo" width="200" height="400">
 ​    <img src="images/10.png" alt="Logo" width="200" height="400">
 ​    <img src="images/11.png" alt="Logo" width="200" height="400">
