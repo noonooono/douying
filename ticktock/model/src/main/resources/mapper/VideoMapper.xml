@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.witt.mapper.VideoMapper">
+    <resultMap id="BaseResultMap" type="fun.witt.model.Video">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="author_id" property="authorId" jdbcType="BIGINT"/>
+        <result column="play_url" property="playUrl" jdbcType="VARCHAR"/>
+        <result column="cover_url" property="coverUrl" jdbcType="VARCHAR"/>
+        <result column="favorite_count" property="favoriteCount" jdbcType="BIGINT"/>
+        <result column="comment_count" property="commentCount" jdbcType="BIGINT"/>
+        <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryVideoOrderByLatestTime" resultMap="BaseResultMap">
+        select v.id,
+               v.author_id,
+               v.play_url,
+               v.cover_url,
+               v.favorite_count,
+               v.comment_count,
+               v.publish_time,
+               v.title
+        from t_video v
+        where publish_time &lt;= #{latestTime}
+        order by publish_time desc
+        limit #{count}
+    </select>
+</mapper>

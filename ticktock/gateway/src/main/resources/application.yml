@@ -1,0 +1,37 @@
+server:
+  port: 8008
+spring:
+  application:
+    name: ticktock-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ticktock-user
+          uri: lb://ticktock-user
+          predicates:
+            - Path=/douyin/user/**
+        - id: ticktock-comment
+          uri: lb://ticktock-comment
+          predicates:
+            - Path=/douyin/comment/**
+        - id: ticktock-favorite
+          uri: lb://ticktock-favorite
+          predicates:
+            - Path=/douyin/favorite/action
+        - id: ticktock-relation
+          uri: lb://ticktock-relation
+          predicates:
+            - Path=/douyin/relation/**
+        - id: ticktock-video
+          uri: lb://ticktock-video
+          predicates:
+            - Path=/douyin/feed,/douyin/favorite/**,/douyin/publish/**
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        service: ${spring.application.name}
+# logging
+logging:
+  level:
+    org.springframework.cloud.gateway: trace
+    reactor.netty.http.client: trace

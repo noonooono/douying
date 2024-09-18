@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <properties resource="application.properties"/>
+
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 通用mapper所在目录 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="fun.witt.utils.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="${db.url}"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <!-- 对应生成的pojo所在包 -->
+        <javaModelGenerator targetPackage="fun.witt.model" targetProject="mybatis-generator-for-imooc/src/main/java"/>
+
+		<!-- 对应生成的mapper所在目录 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="mybatis-generator-for-imooc/src/main/resources"/>
+
+		<!-- 配置mapper对应的java映射 -->
+        <javaClientGenerator targetPackage="fun.witt.mapper" targetProject="mybatis-generator-for-imooc/src/main/java" type="XMLMAPPER"/>
+
+        <!-- 数据库表 -->
+		<table tableName="t_comment" domainObjectName="Comment"></table>
+        <table tableName="t_relation" domainObjectName="Relation"></table>
+        <table tableName="t_favorite" domainObjectName="Favorite"></table>
+        <table tableName="t_user" domainObjectName="User"></table>
+        <table tableName="t_video" domainObjectName="Videox"></table>
+
+
+    </context>
+</generatorConfiguration>

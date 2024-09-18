@@ -1,0 +1,8 @@
+APP_RELATIVE_PATH=$(shell a=`basename $$PWD` && echo $$a)
+API_PROTO_FILES=$(shell cd ../api/$(APP_RELATIVE_PATH) && find . -name *.proto)
+
+.PHONY: envs
+# show envs
+envs:
+	 @echo APP_RELATIVE_PATH:$(APP_RELATIVE_PATH)
+	 @echo API_PROTO_FILES:$(API_PROTO_FILES)

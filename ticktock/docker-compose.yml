@@ -1,0 +1,69 @@
+version: "3.8"
+services:
+  nacos:
+    image: nacos/nacos-server:v2.0.3
+    environment:
+      - MODE=standalone
+      - NACOS_AUTH_IDENTITY_KEY=serverIdentity
+      - NACOS_AUTH_IDENTITY_VALUE=security
+      - NACOS_AUTH_TOKEN=SecretKey012345678901234567890123456789012345678901234567890123456789
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+  minio:
+    image: minio/minio
+    restart: on-failure
+    environment:
+      - MINIO_ACCESS_KEY=ticktock
+      - MINIO_SECRET_KEY=ticktock@2023
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    entrypoint: sh
+    command: -c 'mkdir -p /export/ticktock && minio server /export --console-address ":9001"'
+  camps_tiktok:
+    image: mariadb:10.4
+    restart: on-failure
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./deploy/mysql/initdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+  comment:
+    build:
+      context: comment
+      dockerfile: Dockerfile
+    image: comment:latest
+  favorite:
+    build:
+      context: favorite
+      dockerfile: Dockerfile
+    image: favorite:latest
+  relation:
+    build:
+      context: relation
+      dockerfile: Dockerfile
+    image: relation:latest
+  user:
+    build:
+      context: user
+      dockerfile: Dockerfile
+    image: user:latest
+  video:
+    build:
+      context: video
+      dockerfile: Dockerfile
+    image: video:latest
+  gateway:
+    build:
+      context: gateway
+      dockerfile: Dockerfile
+    image: gateway:latest
+    ports:
+      - "8008:8008"
+networks:
+  ticktock-net:
+

@@ -1,0 +1,6 @@
+db:
+  example:
+    password: 123456
+    type: mysql
+    username: root
+    url: jdbc:mysql://localhost:3306/camps_tiktok

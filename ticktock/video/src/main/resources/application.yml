@@ -1,0 +1,69 @@
+server:
+  #  port: ${random.int(5000,8000)}
+  port: 8003
+  servlet:
+    context-path: /douyin
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  application:
+    name: ticktock-video
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/camps_tiktok?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: root
+    password: 123456
+    hikari:
+      connection-timeout: 30000               # 等待连接池分配连接的最大时间（毫秒），超过这个时长还没有可用的连接，则会抛出SQLException
+      minimum-idle: 5                         # 最小连接数
+      maximum-pool-size: 20                   # 最大连接数
+      auto-commit: true                       # 自动提交
+      idle-timeout: 600000                    # 连接超时的最大时长（毫秒），超时则会被释放（retired）
+      pool-name: DataSourceHikariCP           # 连接池的名字
+      max-lifetime: 18000000                  # 连接池的最大生命时长（毫秒），超时则会被释放（retired）
+      connection-test-query: SELECT 1
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        service: ${spring.application.name}
+  servlet:
+    multipart:
+      max-file-size: 128MB
+      max-request-size: 128MB
+
+jwt:
+  issuer: ticktock
+  signed: VGlrVG9rCg==
+
+# 整合mybatis
+mybatis:
+  type-aliases-package: fun.witt.model        # 所有pojo类所在的包路径
+  mapper-locations: classpath:mapper/*.xml    # mapper映射文件
+
+# 通用mapper工具的配置
+mapper:
+  mappers: fun.witt.utils.MyMapper           # 配置MyMapper，包含了一些封装好的CRUD方法
+  not-empty: false                            # 在进行数据库操作的时候，username != null 是否会追加 username != ''
+  identity: MYSQL
+
+# 分页插件助手的配置
+#pagehelper:
+#  helper-dialect: MYSQL
+#  support-methods-arguments: true
+
+# 日志级别
+logging:
+  level:
+    root: info
+    fun.witt.mapper: debug
+
+minio:
+  endpoint: http://129.204.203.43:9000      # MinIO服务地址
+  bucket: ticktock
+  access-key-id: FucAd3FmjANJLZFHwywu
+  access-key-secret: jeTO8buIR7vQqIvIAGKUvOyZ43px2luZY8JkwlKn
+  type: 0
+  maxLength: 256
+
