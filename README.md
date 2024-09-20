@@ -67,6 +67,7 @@
 <img src="images/9.png" alt="Logo" width="200" height="400"> 
 
 退出登录：
+
 <img src="images/10.png" alt="Logo" width="200" height="400">
 
 查看关注和粉丝：
